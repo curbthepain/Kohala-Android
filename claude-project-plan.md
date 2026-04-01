@@ -11,7 +11,7 @@
 
 | Session | Date | What Got Built | Notes |
 |---------|------|----------------|-------|
-| 001 | | | |
+| 001 | 2026-04-01 | Skeleton APK + full project scaffold | Compose UI, API 28+, all stubs in place |
 
 ---
 
@@ -106,8 +106,8 @@ What the user sees on launch:
 | Field | Value |
 |-------|-------|
 | Language | Kotlin |
-| UI framework | Jetpack Compose (or XML — TBD) |
-| Min SDK | TBD (API 28+ for broad Vulkan 1.1?) |
+| UI framework | Jetpack Compose |
+| Min SDK | API 28 (Android 9+) |
 | Target SDK | Latest stable |
 | Build system | Gradle |
 | Native dependency | `libVkLayer_kohala.so` (bundled in `assets/` or `jniLibs/`) |
@@ -134,8 +134,8 @@ Do these in order across sessions. Each one is a standalone deliverable.
 
 Resolve these before or during buildout:
 
-- [ ] Root-only for v1 or attempt non-root layer loading?
-- [ ] Jetpack Compose or XML layouts?
-- [ ] Min SDK level — how far back do we reach?
-- [ ] Does the .so ship inside the APK or download on first run?
+- [x] Root-only for v1 or attempt non-root layer loading? → **Root-only for v1**
+- [x] Jetpack Compose or XML layouts? → **Jetpack Compose**
+- [x] Min SDK level — how far back do we reach? → **API 28 (Android 9)**
+- [x] Does the .so ship inside the APK or download on first run? → **Bundled in APK assets/**
 - [ ] License validation — phone home or offline key check?

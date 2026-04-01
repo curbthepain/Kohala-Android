@@ -13,15 +13,15 @@
 
 | Module | Package Path | Plan Section | Buildout Step | Status |
 |--------|-------------|--------------|---------------|--------|
-| **MainActivity** | `com.sigand.kohala.MainActivity` | §1 App Structure | Step 1: Skeleton APK | NOT STARTED |
-| **HomeScreen** | `com.sigand.kohala.ui.HomeScreen` | §3a HomeScreen | Step 2: HomeScreen UI | NOT STARTED |
-| **SettingsScreen** | `com.sigand.kohala.ui.SettingsScreen` | §3b SettingsScreen | Step 5: SettingsScreen | NOT STARTED |
-| **AboutScreen** | `com.sigand.kohala.ui.AboutScreen` | §3c AboutScreen | Step 7: AboutScreen + polish | NOT STARTED |
-| **LayerInstaller** | `com.sigand.kohala.installer.LayerInstaller` | §2 Installer Flow | Step 3: Installer logic | NOT STARTED |
-| **LayerValidator** | `com.sigand.kohala.installer.LayerValidator` | §2 Installer Flow | Step 3: Installer logic | NOT STARTED |
-| **Uninstaller** | `com.sigand.kohala.installer.Uninstaller` | §2b Uninstall Flow | Step 3: Installer logic | NOT STARTED |
-| **LayerStatusService** | `com.sigand.kohala.service.LayerStatusService` | §1 App Structure | Step 6: LayerStatusService | NOT STARTED |
-| **Build Config** | `build.gradle.kts` | §4 Build Config | Step 1: Skeleton APK | NOT STARTED |
+| **MainActivity** | `com.sigand.kohala.MainActivity` | §1 App Structure | Step 1: Skeleton APK | DONE |
+| **HomeScreen** | `com.sigand.kohala.ui.HomeScreen` | §3a HomeScreen | Step 2: HomeScreen UI | DONE (static) |
+| **SettingsScreen** | `com.sigand.kohala.ui.SettingsScreen` | §3b SettingsScreen | Step 5: SettingsScreen | STUB |
+| **AboutScreen** | `com.sigand.kohala.ui.AboutScreen` | §3c AboutScreen | Step 7: AboutScreen + polish | STUB |
+| **LayerInstaller** | `com.sigand.kohala.installer.LayerInstaller` | §2 Installer Flow | Step 3: Installer logic | STUB |
+| **LayerValidator** | `com.sigand.kohala.installer.LayerValidator` | §2 Installer Flow | Step 3: Installer logic | STUB |
+| **Uninstaller** | `com.sigand.kohala.installer.Uninstaller` | §2b Uninstall Flow | Step 3: Installer logic | STUB |
+| **LayerStatusService** | `com.sigand.kohala.service.LayerStatusService` | §1 App Structure | Step 6: LayerStatusService | STUB |
+| **Build Config** | `build.gradle.kts` | §4 Build Config | Step 1: Skeleton APK | DONE |
 | **Release Pipeline** | CI/signing | §4 Build Config | Step 8: Release build | NOT STARTED |
 
 ## DEPENDENCY GRAPH
