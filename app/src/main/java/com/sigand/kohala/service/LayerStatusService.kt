@@ -5,21 +5,25 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import com.sigand.kohala.installer.LayerValidator
 
 class LayerStatusService : Service() {
 
     companion object {
         private const val CHANNEL_ID = "kohala_layer_status"
+        private const val FOREGROUND_CHANNEL_ID = "kohala_foreground"
         private const val NOTIFICATION_ID = 1001
+        private const val FOREGROUND_NOTIFICATION_ID = 1002
         private const val CHECK_INTERVAL_MS = 60_000L
 
         fun start(context: Context) {
-            context.startService(Intent(context, LayerStatusService::class.java))
+            context.startForegroundService(Intent(context, LayerStatusService::class.java))
         }
 
         fun stop(context: Context) {
@@ -40,7 +44,8 @@ class LayerStatusService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel()
+        createNotificationChannels()
+        startInForeground()
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -54,6 +59,23 @@ class LayerStatusService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
+
+    private fun startInForeground() {
+        val notification = NotificationCompat.Builder(this, FOREGROUND_CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.ic_menu_info_details)
+            .setContentTitle("Kohala")
+            .setContentText("Monitoring Vulkan layer health")
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOngoing(true)
+            .build()
+
+        ServiceCompat.startForeground(
+            this,
+            FOREGROUND_NOTIFICATION_ID,
+            notification,
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
+        )
+    }
 
     private fun checkLayerHealth() {
         val installed = validator.isInstalled()
@@ -80,15 +102,27 @@ class LayerStatusService : Service() {
         manager.notify(NOTIFICATION_ID, notification)
     }
 
-    private fun createNotificationChannel() {
-        val channel = NotificationChannel(
-            CHANNEL_ID,
-            "Layer Status",
-            NotificationManager.IMPORTANCE_DEFAULT
-        ).apply {
-            description = "Notifications about Kohala Vulkan layer health"
-        }
+    private fun createNotificationChannels() {
         val manager = getSystemService(NotificationManager::class.java)
-        manager.createNotificationChannel(channel)
+
+        manager.createNotificationChannel(
+            NotificationChannel(
+                CHANNEL_ID,
+                "Layer Status Alerts",
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                description = "Notifications about Kohala Vulkan layer health issues"
+            }
+        )
+
+        manager.createNotificationChannel(
+            NotificationChannel(
+                FOREGROUND_CHANNEL_ID,
+                "Background Monitoring",
+                NotificationManager.IMPORTANCE_LOW
+            ).apply {
+                description = "Persistent notification while monitoring layer health"
+            }
+        )
     }
 }

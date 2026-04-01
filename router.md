@@ -22,7 +22,7 @@
 | **Uninstaller** | `com.sigand.kohala.installer.Uninstaller` | §2b Uninstall Flow | Step 3: Installer logic | DONE |
 | **LayerStatusService** | `com.sigand.kohala.service.LayerStatusService` | §1 App Structure | Step 6: LayerStatusService | DONE |
 | **Build Config** | `build.gradle.kts` | §4 Build Config | Step 1: Skeleton APK | DONE |
-| **Release Pipeline** | CI/signing | §4 Build Config | Step 8: Release build | NOT STARTED |
+| **Release Pipeline** | CI/signing | §4 Build Config | Step 8: Release build | DONE |
 
 ## DEPENDENCY GRAPH
 
