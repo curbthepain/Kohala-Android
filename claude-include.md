@@ -11,10 +11,15 @@
     #ifndef KOHALA_ANDROID_CONTEXT_H
     #define KOHALA_ANDROID_CONTEXT_H
 
-    #include "router.md"        // Routing table — maps modules to plans
+    #include "hot-context.md"          // Volatile state — session transfer
+    #include "router.md"               // Routing table — maps modules to plans
     #include "claude-project-plan.md"  // Master build plan
 
     #endif
+
+  SESSION TRANSFER COMMANDS:
+    "output hot context" → Claude regenerates hot-context.md from current state
+    "load hot context"   → Claude reads hot-context.md to restore session state
 -->
 
 ## INCLUDE GUARD
@@ -27,6 +32,7 @@ KOHALA_ANDROID_CONTEXT := LOADED
 
 | Order | File | Purpose | Status |
 |-------|------|---------|--------|
+| 0 | `hot-context.md` | Volatile session state — cross-session transfer | ACTIVE |
 | 1 | `claude-include.md` | THIS FILE — entry point, include guard | ACTIVE |
 | 2 | `router.md` | Module routing table — maps components to plan sections | ACTIVE |
 | 3 | `claude-project-plan.md` | Master project plan — full spec and buildout order | ACTIVE |
@@ -37,6 +43,7 @@ When Claude loads this file, the following chain executes:
 
 ```
 claude-include.md          // Entry point — define scope, set guard
+    ├── hot-context.md     // Volatile register — session state snapshot
     └── router.md          // Route: which module maps to which plan section
          └── claude-project-plan.md  // Full plan: structure, flows, buildout
 ```
