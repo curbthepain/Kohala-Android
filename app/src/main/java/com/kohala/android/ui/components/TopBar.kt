@@ -19,12 +19,10 @@ import androidx.compose.ui.unit.sp
 import com.kohala.android.ui.theme.*
 
 /**
- * Xbox One 2013-era top bar with gamertag, gamerscore, and quick-access icons.
- * The original had the user profile on the left with Xbox button, and
- * notifications/settings on the right.
+ * Windows-style top bar with user profile, gamerscore, and quick-access icons.
  */
 @Composable
-fun XboxTopBar(
+fun DashboardTopBar(
     gamertag: String = "KohalaPlayer",
     gamerscore: String = "2,450",
     modifier: Modifier = Modifier,
@@ -36,12 +34,12 @@ fun XboxTopBar(
             .padding(horizontal = 20.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Xbox logo / home indicator
+        // Home indicator
         Icon(
             imageVector = Icons.Default.Gamepad,
-            contentDescription = "Xbox",
+            contentDescription = "Home",
             modifier = Modifier.size(24.dp),
-            tint = XboxGreen,
+            tint = WindowsGreen,
         )
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -51,7 +49,7 @@ fun XboxTopBar(
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .background(XboxGreen),
+                .background(WindowsGreen),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -127,7 +125,7 @@ private fun TopBarIcon(
                     .align(Alignment.TopEnd)
                     .offset(x = 4.dp, y = (-4).dp)
                     .clip(CircleShape)
-                    .background(XboxGreen),
+                    .background(WindowsGreen),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(

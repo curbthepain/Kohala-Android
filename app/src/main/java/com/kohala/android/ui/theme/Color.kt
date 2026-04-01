@@ -2,12 +2,12 @@ package com.kohala.android.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Xbox One 2013 Dashboard Color Palette
-val XboxGreen = Color(0xFF107C10)
-val XboxGreenLight = Color(0xFF1B9A1B)
-val XboxGreenDark = Color(0xFF0B5E0B)
+// Windows Dashboard Color Palette
+val WindowsGreen = Color(0xFF107C10)
+val WindowsGreenLight = Color(0xFF1B9A1B)
+val WindowsGreenDark = Color(0xFF0B5E0B)
 
-// Dashboard backgrounds - the 2013 Xbox One had a very dark, almost black UI
+// Dashboard backgrounds - dark, almost black UI
 val DashboardBackground = Color(0xFF1A1A1A)
 val DashboardSurface = Color(0xFF2D2D2D)
 val DashboardSurfaceLight = Color(0xFF3A3A3A)
@@ -26,5 +26,5 @@ val TextPrimary = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFFB3B3B3)
 val TextTertiary = Color(0xFF808080)
 
-// Focus/selection border - Xbox used a bright white/green border on focused tiles
+// Focus/selection border - bright white border on focused tiles
 val FocusBorder = Color(0xFFFFFFFF)

@@ -4,8 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.kohala.android.ui.theme.*
 
 /**
- * Represents a tile on the Xbox-style dashboard.
- * Tiles can be different sizes like the original Xbox One dashboard.
+ * Represents a tile on the Windows-style dashboard.
  */
 data class DashboardTile(
     val id: String,
@@ -34,7 +33,7 @@ data class DashboardSection(
     val tiles: List<DashboardTile>,
 )
 
-// Sample data representing the Xbox One 2013 dashboard layout
+// Sample data representing the Windows-style dashboard layout
 object SampleDashboard {
 
     val featuredTile = DashboardTile(
@@ -62,7 +61,7 @@ object SampleDashboard {
         title = "recent",
         tiles = listOf(
             DashboardTile("rec1", "Titanfall", "Last played 2h ago", TileOrange, TileSize.MEDIUM, TileIcon.GAME),
-            DashboardTile("rec2", "Xbox Music", "Now playing", XboxGreen, TileSize.SMALL, TileIcon.MUSIC),
+            DashboardTile("rec2", "Groove Music", "Now playing", WindowsGreen, TileSize.SMALL, TileIcon.MUSIC),
             DashboardTile("rec3", "Upload Studio", "1 new clip", TilePurple, TileSize.MEDIUM, TileIcon.VIDEO),
             DashboardTile("rec4", "Battlefield 4", "Last played yesterday", TileTeal, TileSize.MEDIUM, TileIcon.GAME),
             DashboardTile("rec5", "Twitch", "Live now", TilePurple, TileSize.SMALL, TileIcon.APP),
@@ -72,7 +71,7 @@ object SampleDashboard {
     val store = DashboardSection(
         title = "store",
         tiles = listOf(
-            DashboardTile("store1", "Games", "New releases", XboxGreen, TileSize.MEDIUM, TileIcon.STORE),
+            DashboardTile("store1", "Games", "New releases", WindowsGreen, TileSize.MEDIUM, TileIcon.STORE),
             DashboardTile("store2", "Apps", "Popular", TileBlue, TileSize.MEDIUM, TileIcon.STORE),
             DashboardTile("store3", "Movies & TV", "Featured", TileRed, TileSize.MEDIUM, TileIcon.VIDEO),
             DashboardTile("store4", "Music", "Top albums", TilePurple, TileSize.MEDIUM, TileIcon.MUSIC),
@@ -82,7 +81,7 @@ object SampleDashboard {
     val social = DashboardSection(
         title = "social",
         tiles = listOf(
-            DashboardTile("soc1", "Friends", "12 online", XboxGreen, TileSize.MEDIUM, TileIcon.FRIENDS),
+            DashboardTile("soc1", "Friends", "12 online", WindowsGreen, TileSize.MEDIUM, TileIcon.FRIENDS),
             DashboardTile("soc2", "Messages", "3 new", TileBlue, TileSize.SMALL, TileIcon.MESSAGES),
             DashboardTile("soc3", "Achievements", "2,450 G", TileTeal, TileSize.MEDIUM, TileIcon.ACHIEVEMENTS),
             DashboardTile("soc4", "Party", "Join a party", TilePurple, TileSize.SMALL, TileIcon.PARTY),
@@ -96,7 +95,7 @@ object SampleDashboard {
             DashboardTile("sys1", "My Games & Apps", "24 installed", DashboardSurfaceLight, TileSize.MEDIUM, TileIcon.MY_GAMES_AND_APPS),
             DashboardTile("sys2", "Settings", "System", DashboardSurfaceLight, TileSize.SMALL, TileIcon.SETTINGS),
             DashboardTile("sys3", "Search", "Find games & apps", DashboardSurfaceLight, TileSize.SMALL, TileIcon.SEARCH),
-            DashboardTile("sys4", "Profile", "KohalaPlayer", XboxGreenDark, TileSize.MEDIUM, TileIcon.PROFILE),
+            DashboardTile("sys4", "Profile", "KohalaPlayer", WindowsGreenDark, TileSize.MEDIUM, TileIcon.PROFILE),
         )
     )
 

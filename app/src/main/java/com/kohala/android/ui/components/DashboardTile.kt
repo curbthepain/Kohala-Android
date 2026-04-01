@@ -95,7 +95,7 @@ fun DashboardTileCard(
                 )
         )
 
-        // Icon in center (faded, large) - Xbox style background icon
+        // Icon in center (faded, large) - background icon
         tile.icon?.let { icon ->
             Icon(
                 imageVector = getTileIconVector(icon),
@@ -114,7 +114,7 @@ fun DashboardTileCard(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(6.dp)
-                    .background(XboxGreen)
+                    .background(WindowsGreen)
                     .padding(horizontal = 6.dp, vertical = 2.dp)
             ) {
                 Text(

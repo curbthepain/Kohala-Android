@@ -15,8 +15,8 @@ import com.kohala.android.ui.theme.TextSecondary
 
 /**
  * A horizontal scrolling row of tiles with a section header.
- * Mirrors the Xbox One 2013 dashboard's horizontal tile groups
- * for Pins, Recent, Store, etc.
+ * Horizontal scrolling row of tiles for dashboard sections
+ * like Pins, Recent, Store, etc.
  */
 @Composable
 fun TileRow(
@@ -24,7 +24,7 @@ fun TileRow(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        // Section header - Xbox used uppercase, light-weight section labels
+        // Section header - uppercase, light-weight section labels
         Text(
             text = section.title.uppercase(),
             fontSize = 13.sp,
