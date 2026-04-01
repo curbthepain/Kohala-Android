@@ -8,28 +8,40 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun AboutScreen(onNavigateBack: () -> Unit) {
+fun AboutScreen(
+    onNavigateBack: () -> Unit,
+    viewModel: AboutViewModel = viewModel()
+) {
     val context = LocalContext.current
+    val state by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         TextButton(onClick = onNavigateBack) {
             Text("\u2190 Back")
@@ -86,7 +98,7 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // License tier
+        // License tier + activation
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
@@ -101,7 +113,7 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Community Edition",
+                    text = "${state.currentTier} Edition",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -111,6 +123,46 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = state.licenseKeyInput,
+                    onValueChange = { viewModel.updateKeyInput(it) },
+                    label = { Text("License Key") },
+                    placeholder = { Text("KOHALA-PRO-XXXX-XXXX") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+
+                state.licenseError?.let { error ->
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = error,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                    onClick = { viewModel.activateKey() },
+                    enabled = state.licenseKeyInput.isNotBlank(),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Activate License")
+                }
+
+                if (state.hasActiveKey) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    TextButton(
+                        onClick = { viewModel.deactivate() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Deactivate", color = MaterialTheme.colorScheme.error)
+                    }
+                }
             }
         }
 
@@ -144,7 +196,7 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
             Text("Support")
         }
 
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Legal
         HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
@@ -154,5 +206,7 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }

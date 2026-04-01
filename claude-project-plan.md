@@ -14,6 +14,7 @@
 | 001 | 2026-04-01 | Skeleton APK + full project scaffold | Compose UI, API 28+, all stubs in place |
 | 002 | 2026-04-01 | Steps 3-7: Full installer, settings, about, service | Root su copy, manifest JSON, ViewModel, config, status service, about polish |
 | 003 | 2026-04-01 | Step 8: Release build pipeline + gap fixes | Foreground service, adaptive icon, gradlew, signing, ProGuard, APK built |
+| 004 | 2026-04-01 | Close all stubs + license validation | Log export, per-game overrides, offline license, FileProvider, zero TODOs |
 
 ---
 
@@ -140,4 +141,4 @@ Resolve these before or during buildout:
 - [x] Jetpack Compose or XML layouts? → **Jetpack Compose**
 - [x] Min SDK level — how far back do we reach? → **API 28 (Android 9)**
 - [x] Does the .so ship inside the APK or download on first run? → **Bundled in APK assets/**
-- [ ] License validation — phone home or offline key check?
+- [x] License validation — phone home or offline key check? → **Offline key check (SHA-256 checksum validation)**

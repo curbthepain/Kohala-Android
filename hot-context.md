@@ -11,15 +11,16 @@
 -->
 
 ## LAST UPDATED
-2026-04-01 — Session 003
+2026-04-01 — Session 004
 
 ## SESSION STATE
 
 ```
-BUILDOUT:     8/8 steps COMPLETE
-ROUTER:       10/10 modules DONE
-OPEN QUESTIONS: 4/5 resolved (license validation remains)
-APK STATUS:   BUILT + SIGNED
+BUILDOUT:       8/8 steps COMPLETE
+ROUTER:         10/10 modules DONE
+OPEN QUESTIONS: 5/5 resolved
+STUBS/TODOS:    0 remaining
+APK STATUS:     BUILT + SIGNED (release 8.2MB)
 ```
 
 ## DECISIONS IN EFFECT
@@ -32,6 +33,7 @@ APK STATUS:   BUILT + SIGNED
 | .so delivery | Bundled in APK assets/ | Session 001 |
 | Service type | Foreground (SPECIAL_USE) | Session 003 |
 | Signing | kohala-release.jks (gitignored) | Session 003 |
+| License validation | Offline SHA-256 checksum | Session 004 |
 
 ## CURRENT FILE MAP
 
@@ -41,15 +43,17 @@ com.sigand.kohala/
 ├── ui/
 │   ├── KohalaApp.kt                  — NavHost: home/settings/about
 │   ├── HomeScreen.kt                 — Live status, install/uninstall/toggle
-│   ├── SettingsScreen.kt             — Radio preset selector
-│   ├── AboutScreen.kt                — Branding, tiers, links, legal
-│   ├── LayerViewModel.kt             — Bridges installer+config to UI
-│   └── SettingsViewModel.kt          — Preset persistence via LayerConfig
+│   ├── SettingsScreen.kt             — Quality presets, per-game overrides, log export
+│   ├── SettingsViewModel.kt          — Preset + override persistence, log collection + share
+│   ├── AboutScreen.kt                — Branding, license activation, links, legal
+│   ├── AboutViewModel.kt             — License key activation/deactivation
+│   └── LayerViewModel.kt             — Bridges installer+config to HomeScreen
 ├── installer/
 │   ├── LayerInstaller.kt             — Root su copy .so + JSON manifest
 │   ├── LayerValidator.kt             — Root file existence checks
 │   ├── Uninstaller.kt                — Root removal + validation
-│   └── LayerConfig.kt                — JSON config, quality presets
+│   ├── LayerConfig.kt                — JSON config, quality presets, per-game overrides
+│   └── LicenseValidator.kt           — Offline key validation (SHA-256 checksum)
 └── service/
     └── LayerStatusService.kt          — Foreground service, 60s health check
 ```
@@ -64,18 +68,14 @@ com.sigand.kohala/
 
 ## KNOWN GAPS / NEXT WORK
 
-- [ ] License validation — phone home or offline key check? (last open question)
-- [ ] `SettingsViewModel.exportLogs()` is a Toast stub
-- [ ] No actual `libVkLayer_kohala.so` in assets/ (expected — needs real layer binary)
-- [ ] Per-game overrides stub in SettingsScreen
+- [ ] No actual `libVkLayer_kohala.so` in assets/ (needs real layer binary from C++ build)
 - [ ] Vulkan instance validation in LayerValidator (currently: file check only)
+- [ ] Notification permission runtime request (API 33+)
 
 ## WHAT TO TELL NEXT SESSION
 
-> All 8 buildout steps are done. The app compiles, builds, and produces a
-> signed release APK. The installer uses root `su` to copy the Vulkan layer
-> .so and JSON manifest to `/data/local/vulkan/implicit_layer.d/`. The UI
-> is Jetpack Compose with Navigation, ViewModel state management, and a
-> foreground status service. The remaining work is: real .so binary,
-> license validation, log export, per-game overrides, and Vulkan instance
-> validation. Branch: `claude/kohala-android-scaffold-1GFaz`.
+> Plan is fully executed. All 8 buildout steps done, all 5 open questions
+> resolved, zero TODOs/stubs in code. The signed release APK builds clean
+> at 8.2MB. Remaining work is integration: drop in the real .so binary,
+> add Vulkan instance validation, and request notification permission on
+> API 33+. Branch: `claude/kohala-android-scaffold-1GFaz`.

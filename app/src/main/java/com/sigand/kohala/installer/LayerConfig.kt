@@ -63,10 +63,38 @@ class LayerConfig(private val context: Context) {
         }
     }
 
+    fun getGameOverrides(): Map<String, QualityPreset> {
+        val json = readConfig()
+        val overrides = json.optJSONObject("game_overrides") ?: return emptyMap()
+        val result = mutableMapOf<String, QualityPreset>()
+        for (key in overrides.keys()) {
+            val preset = QualityPreset.entries.find { it.key == overrides.optString(key) }
+            if (preset != null) result[key] = preset
+        }
+        return result
+    }
+
+    fun setGameOverride(packageName: String, preset: QualityPreset) {
+        val json = readConfig()
+        val overrides = json.optJSONObject("game_overrides") ?: org.json.JSONObject()
+        overrides.put(packageName, preset.key)
+        json.put("game_overrides", overrides)
+        writeConfig(json)
+    }
+
+    fun removeGameOverride(packageName: String) {
+        val json = readConfig()
+        val overrides = json.optJSONObject("game_overrides") ?: return
+        overrides.remove(packageName)
+        json.put("game_overrides", overrides)
+        writeConfig(json)
+    }
+
     private fun defaultConfig(): JSONObject {
         return JSONObject().apply {
             put("quality_preset", QualityPreset.BALANCED.key)
             put("enabled", false)
+            put("game_overrides", org.json.JSONObject())
         }
     }
 }
