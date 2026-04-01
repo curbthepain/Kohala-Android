@@ -25,7 +25,8 @@ enum class TileSize {
 }
 
 enum class TileIcon {
-    GAME, STORE, SETTINGS, FRIENDS, MESSAGES, MUSIC, VIDEO, ACHIEVEMENTS, PROFILE, APP
+    GAME, STORE, SETTINGS, FRIENDS, MESSAGES, MUSIC, VIDEO, ACHIEVEMENTS, PROFILE, APP,
+    MY_GAMES_AND_APPS, ACTIVITY_FEED, PARTY, SEARCH
 }
 
 data class DashboardSection(
@@ -79,14 +80,25 @@ object SampleDashboard {
     )
 
     val social = DashboardSection(
-        title = "friends",
+        title = "social",
         tiles = listOf(
             DashboardTile("soc1", "Friends", "12 online", XboxGreen, TileSize.MEDIUM, TileIcon.FRIENDS),
             DashboardTile("soc2", "Messages", "3 new", TileBlue, TileSize.SMALL, TileIcon.MESSAGES),
             DashboardTile("soc3", "Achievements", "2,450 G", TileTeal, TileSize.MEDIUM, TileIcon.ACHIEVEMENTS),
-            DashboardTile("soc4", "Party", "Join a party", TilePurple, TileSize.SMALL, TileIcon.FRIENDS),
+            DashboardTile("soc4", "Party", "Join a party", TilePurple, TileSize.SMALL, TileIcon.PARTY),
+            DashboardTile("soc5", "Activity Feed", "See what's new", DashboardSurfaceLight, TileSize.MEDIUM, TileIcon.ACTIVITY_FEED),
         )
     )
 
-    val allSections = listOf(pins, recentItems, store, social)
+    val system = DashboardSection(
+        title = "system",
+        tiles = listOf(
+            DashboardTile("sys1", "My Games & Apps", "24 installed", DashboardSurfaceLight, TileSize.MEDIUM, TileIcon.MY_GAMES_AND_APPS),
+            DashboardTile("sys2", "Settings", "System", DashboardSurfaceLight, TileSize.SMALL, TileIcon.SETTINGS),
+            DashboardTile("sys3", "Search", "Find games & apps", DashboardSurfaceLight, TileSize.SMALL, TileIcon.SEARCH),
+            DashboardTile("sys4", "Profile", "KohalaPlayer", XboxGreenDark, TileSize.MEDIUM, TileIcon.PROFILE),
+        )
+    )
+
+    val allSections = listOf(pins, recentItems, store, social, system)
 }

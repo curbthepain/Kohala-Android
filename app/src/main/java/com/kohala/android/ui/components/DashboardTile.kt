@@ -170,5 +170,9 @@ fun getTileIconVector(icon: TileIcon): ImageVector {
         TileIcon.ACHIEVEMENTS -> Icons.Default.EmojiEvents
         TileIcon.PROFILE -> Icons.Default.Person
         TileIcon.APP -> Icons.Default.Apps
+        TileIcon.MY_GAMES_AND_APPS -> Icons.Default.GridView
+        TileIcon.ACTIVITY_FEED -> Icons.Default.DynamicFeed
+        TileIcon.PARTY -> Icons.Default.Group
+        TileIcon.SEARCH -> Icons.Default.Search
     }
 }
