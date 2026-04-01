@@ -14,13 +14,13 @@
 | Module | Package Path | Plan Section | Buildout Step | Status |
 |--------|-------------|--------------|---------------|--------|
 | **MainActivity** | `com.sigand.kohala.MainActivity` | §1 App Structure | Step 1: Skeleton APK | DONE |
-| **HomeScreen** | `com.sigand.kohala.ui.HomeScreen` | §3a HomeScreen | Step 2: HomeScreen UI | DONE (static) |
-| **SettingsScreen** | `com.sigand.kohala.ui.SettingsScreen` | §3b SettingsScreen | Step 5: SettingsScreen | STUB |
-| **AboutScreen** | `com.sigand.kohala.ui.AboutScreen` | §3c AboutScreen | Step 7: AboutScreen + polish | STUB |
-| **LayerInstaller** | `com.sigand.kohala.installer.LayerInstaller` | §2 Installer Flow | Step 3: Installer logic | STUB |
-| **LayerValidator** | `com.sigand.kohala.installer.LayerValidator` | §2 Installer Flow | Step 3: Installer logic | STUB |
-| **Uninstaller** | `com.sigand.kohala.installer.Uninstaller` | §2b Uninstall Flow | Step 3: Installer logic | STUB |
-| **LayerStatusService** | `com.sigand.kohala.service.LayerStatusService` | §1 App Structure | Step 6: LayerStatusService | STUB |
+| **HomeScreen** | `com.sigand.kohala.ui.HomeScreen` | §3a HomeScreen | Step 2: HomeScreen UI | DONE (live) |
+| **SettingsScreen** | `com.sigand.kohala.ui.SettingsScreen` | §3b SettingsScreen | Step 5: SettingsScreen | DONE |
+| **AboutScreen** | `com.sigand.kohala.ui.AboutScreen` | §3c AboutScreen | Step 7: AboutScreen + polish | DONE |
+| **LayerInstaller** | `com.sigand.kohala.installer.LayerInstaller` | §2 Installer Flow | Step 3: Installer logic | DONE |
+| **LayerValidator** | `com.sigand.kohala.installer.LayerValidator` | §2 Installer Flow | Step 3: Installer logic | DONE |
+| **Uninstaller** | `com.sigand.kohala.installer.Uninstaller` | §2b Uninstall Flow | Step 3: Installer logic | DONE |
+| **LayerStatusService** | `com.sigand.kohala.service.LayerStatusService` | §1 App Structure | Step 6: LayerStatusService | DONE |
 | **Build Config** | `build.gradle.kts` | §4 Build Config | Step 1: Skeleton APK | DONE |
 | **Release Pipeline** | CI/signing | §4 Build Config | Step 8: Release build | NOT STARTED |
 

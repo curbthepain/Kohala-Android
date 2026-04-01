@@ -12,6 +12,7 @@
 | Session | Date | What Got Built | Notes |
 |---------|------|----------------|-------|
 | 001 | 2026-04-01 | Skeleton APK + full project scaffold | Compose UI, API 28+, all stubs in place |
+| 002 | 2026-04-01 | Steps 3-7: Full installer, settings, about, service | Root su copy, manifest JSON, ViewModel, config, status service, about polish |
 
 ---
 

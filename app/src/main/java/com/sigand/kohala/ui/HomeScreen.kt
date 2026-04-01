@@ -11,31 +11,32 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun HomeScreen(
     onNavigateToSettings: () -> Unit,
-    onNavigateToAbout: () -> Unit
+    onNavigateToAbout: () -> Unit,
+    viewModel: LayerViewModel = viewModel()
 ) {
-    var layerEnabled by remember { mutableStateOf(false) }
-    val layerInstalled = false // TODO: wire to actual installer state
+    val state by viewModel.uiState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -69,7 +70,7 @@ fun HomeScreen(
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
-                containerColor = if (layerInstalled)
+                containerColor = if (state.installed)
                     MaterialTheme.colorScheme.primaryContainer
                 else
                     MaterialTheme.colorScheme.surfaceVariant
@@ -83,9 +84,9 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
-                StatusBadge(installed = layerInstalled)
+                StatusBadge(installed = state.installed)
 
-                if (layerInstalled) {
+                if (state.installed) {
                     Spacer(modifier = Modifier.height(12.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -97,8 +98,8 @@ fun HomeScreen(
                             style = MaterialTheme.typography.bodyLarge
                         )
                         Switch(
-                            checked = layerEnabled,
-                            onCheckedChange = { layerEnabled = it }
+                            checked = state.enabled,
+                            onCheckedChange = { viewModel.setEnabled(it) }
                         )
                     }
                 }
@@ -122,7 +123,7 @@ fun HomeScreen(
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = "Quality Preset: Balanced",
+                    text = "Quality Preset: ${state.qualityPreset}",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
@@ -135,9 +136,11 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         // Install / Uninstall button
-        if (layerInstalled) {
+        if (state.loading) {
+            CircularProgressIndicator(modifier = Modifier.size(48.dp))
+        } else if (state.installed) {
             OutlinedButton(
-                onClick = { /* TODO: wire to Uninstaller */ },
+                onClick = { viewModel.uninstall() },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -145,7 +148,7 @@ fun HomeScreen(
             }
         } else {
             Button(
-                onClick = { /* TODO: wire to LayerInstaller */ },
+                onClick = { viewModel.install() },
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -154,6 +157,20 @@ fun HomeScreen(
         }
 
         Spacer(modifier = Modifier.weight(1f))
+
+        // Error snackbar
+        state.error?.let { error ->
+            Snackbar(
+                action = {
+                    TextButton(onClick = { viewModel.clearError() }) {
+                        Text("Dismiss")
+                    }
+                },
+                modifier = Modifier.padding(bottom = 8.dp)
+            ) {
+                Text(error)
+            }
+        }
 
         // Navigation row
         Row(
