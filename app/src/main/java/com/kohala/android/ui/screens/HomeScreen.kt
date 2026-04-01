@@ -14,7 +14,7 @@ import com.kohala.android.ui.components.DashboardTopBar
 import com.kohala.android.ui.theme.DashboardBackground
 
 /**
- * Main homescreen with a Windows-style tile dashboard layout.
+ * Main homescreen with a tile-based dashboard layout.
  */
 @Composable
 fun HomeScreen() {

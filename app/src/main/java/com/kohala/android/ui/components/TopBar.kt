@@ -19,12 +19,12 @@ import androidx.compose.ui.unit.sp
 import com.kohala.android.ui.theme.*
 
 /**
- * Windows-style top bar with user profile, gamerscore, and quick-access icons.
+ * Top bar with user profile and quick-access icons.
  */
 @Composable
 fun DashboardTopBar(
-    gamertag: String = "KohalaPlayer",
-    gamerscore: String = "2,450",
+    username: String = "Player1",
+    score: String = "2,450",
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -39,7 +39,7 @@ fun DashboardTopBar(
             imageVector = Icons.Default.Gamepad,
             contentDescription = "Home",
             modifier = Modifier.size(24.dp),
-            tint = WindowsGreen,
+            tint = AccentGreen,
         )
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -49,7 +49,7 @@ fun DashboardTopBar(
             modifier = Modifier
                 .size(32.dp)
                 .clip(CircleShape)
-                .background(WindowsGreen),
+                .background(AccentGreen),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -62,10 +62,10 @@ fun DashboardTopBar(
 
         Spacer(modifier = Modifier.width(12.dp))
 
-        // Gamertag and gamerscore
+        // Username and score
         Column {
             Text(
-                text = gamertag,
+                text = username,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.SemiBold,
                 color = TextPrimary,
@@ -73,13 +73,13 @@ fun DashboardTopBar(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
                     imageVector = Icons.Default.EmojiEvents,
-                    contentDescription = "Gamerscore",
+                    contentDescription = "Score",
                     modifier = Modifier.size(12.dp),
                     tint = TextSecondary,
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
-                    text = gamerscore,
+                    text = score,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Normal,
                     color = TextSecondary,
@@ -89,7 +89,7 @@ fun DashboardTopBar(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        // Right-side icons: friends, messages, notifications, settings
+        // Right-side icons
         TopBarIcon(Icons.Default.People, "Friends", badgeCount = 12)
         Spacer(modifier = Modifier.width(20.dp))
         TopBarIcon(Icons.Default.Email, "Messages", badgeCount = 3)
@@ -117,7 +117,6 @@ private fun TopBarIcon(
             modifier = Modifier.size(20.dp),
             tint = TextSecondary,
         )
-        // Badge indicator
         if (badgeCount != null && badgeCount > 0) {
             Box(
                 modifier = Modifier
@@ -125,7 +124,7 @@ private fun TopBarIcon(
                     .align(Alignment.TopEnd)
                     .offset(x = 4.dp, y = (-4).dp)
                     .clip(CircleShape)
-                    .background(WindowsGreen),
+                    .background(AccentGreen),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(

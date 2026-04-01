@@ -5,8 +5,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Segoe UI-inspired typography - clean, light-weight
-val WindowsTypography = Typography(
+// Clean, light-weight typography
+val KohalaTypography = Typography(
     displayLarge = TextStyle(
         fontWeight = FontWeight.Light,
         fontSize = 36.sp,

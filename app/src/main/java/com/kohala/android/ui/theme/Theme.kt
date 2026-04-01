@@ -4,10 +4,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 
-private val WindowsDarkColorScheme = darkColorScheme(
-    primary = WindowsGreen,
+private val KohalaDarkColorScheme = darkColorScheme(
+    primary = AccentGreen,
     onPrimary = TextPrimary,
-    secondary = WindowsGreenLight,
+    secondary = AccentGreenLight,
     onSecondary = TextPrimary,
     background = DashboardBackground,
     onBackground = TextPrimary,
@@ -20,8 +20,8 @@ private val WindowsDarkColorScheme = darkColorScheme(
 @Composable
 fun KohalaTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = WindowsDarkColorScheme,
-        typography = WindowsTypography,
+        colorScheme = KohalaDarkColorScheme,
+        typography = KohalaTypography,
         content = content
     )
 }

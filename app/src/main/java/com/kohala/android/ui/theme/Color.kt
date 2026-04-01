@@ -2,10 +2,10 @@ package com.kohala.android.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Windows Dashboard Color Palette
-val WindowsGreen = Color(0xFF107C10)
-val WindowsGreenLight = Color(0xFF1B9A1B)
-val WindowsGreenDark = Color(0xFF0B5E0B)
+// Dashboard Color Palette
+val AccentGreen = Color(0xFF107C10)
+val AccentGreenLight = Color(0xFF1B9A1B)
+val AccentGreenDark = Color(0xFF0B5E0B)
 
 // Dashboard backgrounds - dark, almost black UI
 val DashboardBackground = Color(0xFF1A1A1A)

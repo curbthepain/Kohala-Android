@@ -114,7 +114,7 @@ fun DashboardTileCard(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(6.dp)
-                    .background(WindowsGreen)
+                    .background(AccentGreen)
                     .padding(horizontal = 6.dp, vertical = 2.dp)
             ) {
                 Text(
